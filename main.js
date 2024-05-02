@@ -44,8 +44,8 @@ async function showStations(url) {
 
     L.geoJson(geojson, {
         pointToLayer: function (feature, latlng) {
-          console.log("new entry")
-          console.log(feature.properties)
+          //console.log("new entry")
+          //console.log(feature.properties)
           return L.marker(latlng, {
             icon: L.icon({
               iconUrl: `icons/wifi.png`,
