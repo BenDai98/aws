@@ -44,10 +44,11 @@ async function showStations(url) {
 
     L.geoJson(geojson, {
         pointToLayer: function (feature, latlng) {
+          console.log("new entry")
           console.log(feature.properties)
           return L.marker(latlng, {
             icon: L.icon({
-              iconUrl: `wifi.png`,
+              iconUrl: `icons/wifi.png`,
               iconAnchor: [16, 37],
               popupAnchor: [0, -37],
             }),
@@ -56,8 +57,14 @@ async function showStations(url) {
         },
         onEachFeature: function (feature, layer) {
           layer.bindPopup(`
-            <h4>${feature.properties.LINE_NAME}</h4>
-            liste...
+            <h4>${feature.properties.name}</h4>
+            <ul>
+                <li><i class="fa-regular fa-temperature-three-quarters"></i> Lufttemperatur (°C): ${feature.properties.LT}</li>
+                <li><i class="fa-regular fa-droplet-percent"></i> Relative Luftfeuchte (%): ${feature.properties.RH}</li>
+                <li><i class="fa-solid fa-wind"></i> Windgeschwindigkeit (km/h): ${feature.properties.WG}</li>
+                <li><i class="fa-regular fa-snowflake"></i> Schneehöhe (cm): ${feature.properties.snowHight || "-"}</li>
+            </ul>
+            ${feature.properties.date}
                 
           `)
         }
