@@ -62,7 +62,7 @@ async function showStations(url) {
                 <li><i class="fa-regular fa-temperature-three-quarters"></i> Lufttemperatur (°C): ${feature.properties.LT}</li>
                 <li><i class="fa-regular fa-droplet-percent"></i> Relative Luftfeuchte (%): ${feature.properties.RH}</li>
                 <li><i class="fa-solid fa-wind"></i> Windgeschwindigkeit (km/h): ${feature.properties.WG}</li>
-                <li><i class="fa-regular fa-snowflake"></i> Schneehöhe (cm): ${feature.properties.snowHight || "-"}</li>
+                <li><i class="fa-regular fa-snowflake"></i> Schneehöhe (cm): ${feature.properties.HS || "-"}</li>
             </ul>
             ${feature.properties.date}
                 
