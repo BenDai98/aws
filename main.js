@@ -12,11 +12,12 @@ let map = L.map("map", {
   maxZoom: 12
 }).setView([ibk.lat, ibk.lng], 11);
 
+
 // thematische Layer
 let themaLayer = {
-  stations: L.featureGroup().addTo(map),
-  temperature: L.featureGroup().addTo(map),
-  wind: L.featureGroup().addTo(map),
+  stations: L.featureGroup(),//.addTo(map),
+  temperature: L.featureGroup(),//.addTo(map),
+  wind: L.featureGroup(),//.addTo(map),
   snowHeight: L.featureGroup().addTo(map)
 }
 
@@ -35,13 +36,25 @@ L.control.layers({
   "Wind": themaLayer.wind,
   "Snow Height": themaLayer.snowHeight,
 
-
 }).addTo(map);
 
 // Maßstab
 L.control.scale({
   imperial: false,
 }).addTo(map);
+
+// Change default options from RainView2er GitHub
+L.control.rainviewer({
+  position: 'bottomleft',
+  nextButtonText: '>',
+  playStopButtonText: 'Play/Stop',
+  prevButtonText: '<',
+  positionSliderLabelText: "Hour:",
+  opacitySliderLabelText: "Opacity:",
+  animationInterval: 500,
+  opacity: 0.5
+}).addTo(map);
+
 
 function getColor(value, ramp) {
   //console.log("getColor: value: ", value, "ramp: ", ramp);
@@ -52,10 +65,6 @@ function getColor(value, ramp) {
     }
   }
 }
-
-// call function for verification
-//let color = getColor(17,COLORS.temperature);
-//console.log("Color for 17 degrees is: ",color);
 
 function showTemperature(geojson) {
   L.geoJSON(geojson, {
@@ -161,4 +170,7 @@ async function showStations(url) {
   showSnowHeight(geojson);
 
 }
+
+
+
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
