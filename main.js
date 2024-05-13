@@ -13,7 +13,7 @@ let map = L.map("map", {
 }).setView([ibk.lat, ibk.lng], 11);
 
 
-// thematische Layer
+// thematische Layer 
 let themaLayer = {
   stations: L.featureGroup(),//.addTo(map),
   temperature: L.featureGroup(),//.addTo(map),
